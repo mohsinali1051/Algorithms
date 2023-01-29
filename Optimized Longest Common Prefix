@@ -1,0 +1,21 @@
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        
+        Arrays.sort(strs);
+        String alphabaticallyFirst = strs[0];
+        String alphabaticallyLast = strs[strs.length - 1];
+
+        int index = 0;
+        int optionalSize = alphabaticallyFirst.length();
+
+        String commonPrefix = "";
+        while(index < optionalSize){
+            if(alphabaticallyFirst.charAt(index) != alphabaticallyLast.charAt(index)){
+                return commonPrefix;
+            }
+            commonPrefix += alphabaticallyFirst.charAt(index);
+            index++;
+        }
+        return commonPrefix;
+    }
+}
