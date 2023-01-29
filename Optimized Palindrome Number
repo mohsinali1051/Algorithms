@@ -1,0 +1,82 @@
+class Solution {
+    public boolean isPalindrome(int x) {
+
+        //If x is negative number -- not a palindrome
+        if(x < 0)
+            return false;
+
+        /*
+        If x has zero at the end like 10 which is not a palindrome
+        if(x % 10 == 0)
+            return false;
+        this code will work for x = 10
+        Note: 
+        When x = 0 and code is like,
+        if(x % 10 == 0)
+            return false;
+        
+        Then 0 % 10 = 0 will pass the condition will return false
+        which means 0 is not a plindrome but actually 0 is palindrome.
+
+        so modified condition is:
+        if(x % 10 == 0 && x != 0)
+            return false;
+        */
+
+        if(x % 10 == 0 && x != 0)
+            return false;
+
+        /*
+        halfResult will only save the half of number
+        if number is 1221
+        halfResult will only save 12 and only by this number we will be able
+        to check whether a number is palindrome or not.
+        */
+        int halfResult = 0;
+
+        /*
+        Suppose x = 1221
+        and halfResult = 0
+
+        1st Iteration:
+            halfResult = 1;
+            x = 122
+        2nd Iteration:
+            halfResult = 12
+            x = 12
+
+        We can see if we just get the half result we can check whether the number is palindrome or not.
+        */
+        while (halfResult < x){
+            halfResult = halfResult*10 + x%10;
+            x = x / 10;
+        }
+        //In the above x = 1221 example, after 2nd iteration halfResult becomes equal to x
+        if(x == halfResult){
+            return true;
+        }
+         /*
+
+        When number has Odd digits like 121, 13531, we need to divide the halfResult by 10 get it equal to x.
+
+        Suppose x = 121
+        and halfResult = 0
+
+        1st Iteration:
+            halfResult = 1;
+            x = 12
+        2nd Iteration:
+            halfResult = 12
+            x = 1
+
+        After 2nd iteration, halfResult is 12.
+        If we divide the 12 by 10 it will return us 1 which is equals to current x.
+        */
+        if(x == halfResult/10){
+            return true;
+        }
+
+        return false;
+        
+    }
+}
